@@ -4,10 +4,11 @@ import { getUserRooms } from "@/data-access/rooms";
 import UserRoomCard from "./your-room-card";
 import { unstable_noStore } from "next/cache";
 import Image from "next/image";
+import { Room } from "@prisma/client";
 
 export default async function YourRoomsPage() {
   unstable_noStore();
-  const rooms = await getUserRooms();
+  const rooms: Room[] = await getUserRooms();
   return (
     <main className="min-h-screen justify-between p-16">
       <div className="flex justify-between items-center mb-8">

@@ -4,11 +4,12 @@ import Link from "next/link";
 import { TagList } from "@/components/tags-list";
 import VideoCall from "@/components/video-call";
 import { unstable_noStore } from "next/cache";
+import { Room } from "@prisma/client";
 
 export default async function RoomPage(props: { params: { roomId: string } }) {
   const roomId = props.params.roomId;
   unstable_noStore();
-  const room = await getRoom(roomId);
+  const room: Room = (await getRoom(roomId)) as Room;
   if (!room) {
     return <div>Room not found</div>;
   }

@@ -6,6 +6,7 @@ import { SearchBar } from "./search-bar";
 import { RoomCard } from "./room-card";
 import { unstable_noStore } from "next/cache";
 import Image from "next/image";
+import { Room } from "@prisma/client";
 
 export default async function Home({
   searchParams,
@@ -15,7 +16,7 @@ export default async function Home({
   };
 }) {
   unstable_noStore();
-  const rooms = await getRooms(searchParams.search);
+  const rooms: Room[] = await getRooms(searchParams.search);
   return (
     <main className="min-h-screen justify-between p-16">
       <div className="flex justify-between items-center mb-8">
